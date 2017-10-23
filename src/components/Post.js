@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {importPostDetails} from '../actions/posts';
+import {importComments} from '../actions/comments';
+import '../styles/styles.css';
 
 var _ = require('lodash');
 
@@ -9,6 +11,7 @@ class Post extends Component {
 		var {post_id} = this.props.match.params;
 
 		this.props.importPostDetails(post_id);
+		this.props.importComments(post_id);
 	}
 
 	convertTimestampToDate(timestamp) {
@@ -18,7 +21,7 @@ class Post extends Component {
 	}
 
 	render() {
-		var {post} = this.props;
+		var {post, comments} = this.props;
 		var noPostFound = () => {
 			return (
 				<div>
@@ -31,10 +34,28 @@ class Post extends Component {
 			<div className="container">
 				{!_.isEmpty(post) ?
 						<div>
-							<h4 className="text-center">{post.title}</h4>
-							<p><b>Date:</b> {this.convertTimestampToDate(post.timestamp)}</p>
-							<p>{post.body}</p>
-							<p><b>Vote Score:</b> {post.voteScore}</p>
+							<div className="post_details">
+								<h4 className="text-center">{post.title}</h4>
+								<p><b>Date:</b> {this.convertTimestampToDate(post.timestamp)}</p>
+								<p>{post.body}</p>
+								<p><b>Vote Score:</b> {post.voteScore}</p>
+							</div>
+
+							<div className="comments_section">
+								{comments.length ? 
+										<div>
+											<h5 className="text-center">Comments</h5>
+
+											<ol>
+												{comments.map(comment => (
+													<li key={comment.id}>{comment.body}</li>
+												))}
+											</ol>
+										</div>
+									:
+										<div>No</div>
+								}
+							</div>
 						</div>
 					:
 						noPostFound()
@@ -46,8 +67,9 @@ class Post extends Component {
 
 function mapStateToProps(state) {
 	return {
-		post: state.posts[0]
+		post: state.posts[0],
+		comments: state.comments
 	};
 }
 
-export default connect(mapStateToProps, {importPostDetails})(Post);
+export default connect(mapStateToProps, {importPostDetails, importComments})(Post);

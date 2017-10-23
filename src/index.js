@@ -9,9 +9,9 @@ import rootReducer from './reducers';
 
 var store = createStore(rootReducer, applyMiddleware(thunk));
 
-store.subscribe(() => {
-	console.log('Store', store.getState());
-});
+// store.subscribe(() => {
+// 	console.log('Store', store.getState());
+// });
 
 ReactDOM.render(
 	<Provider store={store}>

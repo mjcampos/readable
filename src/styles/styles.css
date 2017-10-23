@@ -1,3 +1,11 @@
 ul {
 	list-style-type: none;
 }
+
+.post_details {
+	border-bottom: solid 1px;
+}
+
+.comments_section {
+	border-top: solid 1px;
+}
