@@ -7,19 +7,11 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
-// Import actions to bring in all the posts and categories
-import {importPostsToState} from './actions/posts';
-import {importCategoriesToState} from './actions/categories';
-
 var store = createStore(rootReducer, applyMiddleware(thunk));
 
-// store.subscribe(() => {
-// 	console.log('Store', store.getState());
-// });
-
-// Import all posts and categories from API call
-store.dispatch(importPostsToState());
-store.dispatch(importCategoriesToState());
+store.subscribe(() => {
+	console.log('Store', store.getState());
+});
 
 ReactDOM.render(
 	<Provider store={store}>

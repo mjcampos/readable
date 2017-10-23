@@ -1,16 +1,16 @@
 import * as ReadableAPI from '../utils/ReadableAPI';
 
-export var SET_CATEGORIES = 'SET_CATEGORIES';
+export var GET_CATEGORIES = 'GET_CATEGORIES';
 
-var setCategories = (categoryArr) => {
+var getCategories = (categoryArr) => {
 	return {
-		type: SET_CATEGORIES,
+		type: GET_CATEGORIES,
 		categoryArr
 	}
 }
 
-export var importCategoriesToState = () => dispatch => {
+export var importCategories = () => dispatch => {
 	ReadableAPI.getCategories().then(categories => {
-		dispatch(setCategories(categories));
+		dispatch(getCategories(categories));
 	});
 }

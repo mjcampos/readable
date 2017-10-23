@@ -1,16 +1,40 @@
 import * as ReadableAPI from '../utils/ReadableAPI';
 
-export var SET_POSTS = 'SET_POSTS';
+export var GET_POSTS = 'GET_POSTS';
+export var GET_POST = 'GET_POST';
 
-var setPosts = (postArr) => {
+var getPosts = (posts) => {
 	return {
-		type: SET_POSTS,
-		postArr
+		type: GET_POSTS,
+		posts
 	}
 }
 
-export var importPostsToState = () => dispatch => {
+var getPost = (post) => {
+	return {
+		type: GET_POST,
+		post
+	}
+}
+
+export var importPosts = () => dispatch => {
 	ReadableAPI.getPosts().then(posts => {
-		dispatch(setPosts(posts));
+		dispatch(getPosts(posts));
+	});
+}
+
+export var importPostsByCategory = (category) => dispatch => {
+	ReadableAPI.getPostsForCategory(category).then(posts => {
+		dispatch(getPosts(posts));
+	});
+}
+
+export var importPostDetails = (post_id) => dispatch => {
+	ReadableAPI.getPostDetails(post_id).then(post => {
+		var arr = [];
+
+		if(!post.error) arr.push(post);
+
+		dispatch(getPost(arr));
 	});
 }

@@ -2,7 +2,16 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+// Import actions to bring in all the posts and categories
+import {importPosts} from '../actions/posts';
+import {importCategories} from '../actions/categories';
+
 class Main extends Component {
+	componentWillMount() {
+		this.props.importPosts();
+		this.props.importCategories();
+	}
+
 	convertTimestampToDate(timestamp) {
 		var d = new Date(timestamp);
 
@@ -11,7 +20,7 @@ class Main extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="container">
 				<div className="col-sm-6">
 					<h2 className="text-center">Categories</h2>
 
@@ -30,7 +39,7 @@ class Main extends Component {
 					<ul>
 						{this.props.posts.map(post => (
 							<li key={post.id}>
-								<a><h4>{post.title}</h4></a>
+								<Link to={`${post.category}/${post.id}`}><h4>{post.title}</h4></Link>
 								<p><b>Category:</b> {post.category}</p>
 								<p><b>Vote Score:</b> {post.voteScore}</p>
 								<p><b>Date:</b> {this.convertTimestampToDate(post.timestamp)}</p>
@@ -47,4 +56,4 @@ function mapStateToProps(state) {
 	return state;
 }
 
-export default connect(mapStateToProps, null)(Main);
+export default connect(mapStateToProps, {importPosts, importCategories})(Main);

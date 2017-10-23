@@ -3,6 +3,7 @@ import Nav from './Nav';
 import {Route} from 'react-router-dom';
 import Main from './Main';
 import Category from './Category';
+import Post from './Post';
 
 class App extends Component {
 	render() {
@@ -11,7 +12,8 @@ class App extends Component {
 				<Nav/>
 
 				<Route exact path="/" component={Main}/>
-				<Route path="/:category" component={Category}/>
+				<Route exact path="/:category" component={Category}/>
+				<Route exact path="/:category/:post_id" component={Post}/>
 			</div>
 		);
 	}
