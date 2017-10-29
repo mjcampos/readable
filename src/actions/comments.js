@@ -14,3 +14,9 @@ export var importComments = (post_id) => dispatch => {
 		dispatch(getComments(comments));
 	});
 }
+
+export var addComment = (comment) => dispatch => {
+	ReadableAPI.addComment(comment).then(comment => {
+		dispatch(importComments(comment.parentId));
+	});
+}

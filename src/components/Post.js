@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {importPostDetails, postVote} from '../actions/posts';
-import {importComments} from '../actions/comments';
 import CommentCreate from './CommentCreate';
 import CommentList from './CommentList';
 import PostDetails from './PostDetail';
@@ -13,11 +12,10 @@ class Post extends Component {
 		var {post_id} = this.props.match.params;
 
 		this.props.importPostDetails(post_id);
-		this.props.importComments(post_id);
 	}
 
 	render() {
-		var {post, comments} = this.props;
+		var {post} = this.props;
 		var noPostFound = () => {
 			return (
 				<div>
@@ -31,8 +29,8 @@ class Post extends Component {
 				{!_.isEmpty(post) ?
 						<div>
 							<PostDetails post={post}/>
-							<CommentCreate/>
-							<CommentList comments={comments}/>
+							<CommentCreate parentId={post.id}/>
+							<CommentList parentId={post.id}/>
 						</div>
 					:
 						noPostFound()
@@ -44,9 +42,8 @@ class Post extends Component {
 
 function mapStateToProps(state) {
 	return {
-		post: state.posts[0],
-		comments: state.comments
+		post: state.posts[0]
 	};
 }
 
-export default connect(mapStateToProps, {importPostDetails, importComments, postVote})(Post);
+export default connect(mapStateToProps, {importPostDetails, postVote})(Post);

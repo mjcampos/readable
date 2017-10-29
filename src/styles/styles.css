@@ -2,13 +2,9 @@ ul {
 	list-style-type: none;
 }
 
-.post_details {
-	border-bottom: solid 1px;
-	padding-bottom: 1em;
-}
-
-#CommentList {
-	border-top: solid 1px;
+#CommentList, #CommentCreate {
+	border-top: solid 2px;
+	padding-top: 1em;
 }
 
 #CommentCreate {

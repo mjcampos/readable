@@ -33,9 +33,9 @@ class PostCreate extends Component {
 			var input = {
 				id: uuid(),
 				timestamp: Date.now(),
-				title: this.state.title,
-				body: this.state.body,
-				author: this.state.author,
+				title,
+				body,
+				author,
 				category: this.state.category
 			}
 

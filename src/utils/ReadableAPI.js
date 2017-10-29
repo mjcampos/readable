@@ -65,4 +65,15 @@ export const editPost = (id, params) =>
 		},
 		body: JSON.stringify({...params})
 	}).then(res => res.json())
-	.then(data => console.log(data))
+	.then(data => data)
+
+export const addComment = (params) =>
+	fetch(`${api}/comments`, {
+		method: "POST",
+		headers: {
+			...headers,
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({...params})
+	}).then(res => res.json())
+	.then(data => data)

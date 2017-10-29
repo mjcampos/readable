@@ -1,6 +1,15 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {importComments} from '../actions/comments';
+import Comment from './Comment';
 
 class CommentList extends Component {
+	componentWillMount() {
+		var {parentId} = this.props;
+
+		this.props.importComments(parentId);
+	}
+
 	render() {
 		var {comments} = this.props;
 
@@ -12,10 +21,7 @@ class CommentList extends Component {
 
 							<ol>
 								{comments.map(comment => (
-									<li key={comment.id}>
-										<p>{comment.body} - {comment.author}</p>
-										<p><b>Vote Score:</b> {comment.voteScore}</p>
-									</li>
+									<Comment key={comment.id} comment={comment}/>
 								))}
 							</ol>
 						</div>
@@ -29,4 +35,10 @@ class CommentList extends Component {
 	}
 }
 
-export default CommentList;
+function mapStateToProps(state) {
+	return {
+		comments: state.comments
+	};
+}
+
+export default connect(mapStateToProps, {importComments})(CommentList);
