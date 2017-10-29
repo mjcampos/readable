@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {postVote} from '../actions/posts';
 
 class PostDetail extends Component {
 	convertTimestampToDate(timestamp) {
@@ -7,12 +9,12 @@ class PostDetail extends Component {
 
 		return d.toDateString();
 	}
-	
+
 
 	onButtonClick = (option) => {
-		var {post_id} = this.props.match.params;
+		var {id} = this.props.post;
 
-		this.props.postVote(post_id, {option});
+		this.props.postVote(id, {option});
 	}
 
 	render() {
@@ -43,4 +45,4 @@ class PostDetail extends Component {
 	}
 }
 
-export default PostDetail;
+export default connect(null, {postVote})(PostDetail);
