@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {importPostDetails, postVote} from '../actions/posts';
 import {importComments} from '../actions/comments';
@@ -28,6 +29,7 @@ class Post extends Component {
 
 	render() {
 		var {post, comments} = this.props;
+		var {post_id} = this.props.match.params;
 		var noPostFound = () => {
 			return (
 				<div>
@@ -47,11 +49,15 @@ class Post extends Component {
 								<p><b>Vote Score:</b> {post.voteScore}</p>
 
 								<div className="row">
-									<div className="col-sm-6 text-center">
+									<div className="col-sm-4 text-center">
 										<button className="btn btn-primary" onClick={() => this.onButtonClick("upVote")}>Up Vote</button>
 									</div>
 
-									<div className="col-sm-6 text-center">
+									<div className="col-sm-4 text-center">
+										<Link to={`/post/edit/${post_id}`} className="btn btn-success">Edit</Link>
+									</div>
+
+									<div className="col-sm-4 text-center">
 										<button className="btn btn-danger" onClick={() => this.onButtonClick("downVote")}>Down Vote</button>
 									</div>
 								</div>

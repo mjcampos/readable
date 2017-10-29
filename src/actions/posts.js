@@ -43,6 +43,10 @@ export var addNewPost = (post) => dispatch => {
 	ReadableAPI.addPost(post);
 }
 
+export var editPost = (post_id, params) => dispatch => {
+	ReadableAPI.editPost(post_id, params);
+}
+
 export var postVote = (id, option) => dispatch => {
 	ReadableAPI.postVote(id, option).then(post => {
 		var arr = [];

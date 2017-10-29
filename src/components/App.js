@@ -5,6 +5,7 @@ import Main from './Main';
 import Category from './Category';
 import Post from './Post';
 import PostCreate from './PostCreate';
+import PostEdit from './PostEdit';
 
 class App extends Component {
 	render() {
@@ -16,6 +17,7 @@ class App extends Component {
 				<Route exact path="/category/:category" component={Category}/>
 				<Route exact path="/category/:category/:post_id" component={Post}/>
 				<Route exact path="/post/new" component={PostCreate}/>
+				<Route exact path="/post/edit/:post_id" component={PostEdit}/>
 			</div>
 		);
 	}
