@@ -40,7 +40,15 @@ export var importPostDetails = (post_id) => dispatch => {
 }
 
 export var addNewPost = (post) => dispatch => {
-	ReadableAPI.addPost(post).then(post => {
-		console.log("post", post);
+	ReadableAPI.addPost(post);
+}
+
+export var postVote = (id, option) => dispatch => {
+	ReadableAPI.postVote(id, option).then(post => {
+		var arr = [];
+
+		arr.push(post);
+
+		dispatch(getPost(arr));
 	});
 }

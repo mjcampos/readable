@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {importPostDetails} from '../actions/posts';
+import {importPostDetails, postVote} from '../actions/posts';
 import {importComments} from '../actions/comments';
 import '../styles/styles.css';
 
@@ -18,6 +18,12 @@ class Post extends Component {
 		var d = new Date(timestamp);
 
 		return d.toDateString();
+	}
+
+	onButtonClick = (option) => {
+		var {post_id} = this.props.match.params;
+
+		this.props.postVote(post_id, {option});
 	}
 
 	render() {
@@ -39,6 +45,16 @@ class Post extends Component {
 								<p><b>Date:</b> {this.convertTimestampToDate(post.timestamp)}</p>
 								<p>{post.body}</p>
 								<p><b>Vote Score:</b> {post.voteScore}</p>
+
+								<div className="row">
+									<div className="col-sm-6 text-center">
+										<button className="btn btn-primary" onClick={() => this.onButtonClick("upVote")}>Up Vote</button>
+									</div>
+
+									<div className="col-sm-6 text-center">
+										<button className="btn btn-danger" onClick={() => this.onButtonClick("downVote")}>Down Vote</button>
+									</div>
+								</div>
 							</div>
 
 							<div className="comments_section">
@@ -73,4 +89,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, {importPostDetails, importComments})(Post);
+export default connect(mapStateToProps, {importPostDetails, importComments, postVote})(Post);
