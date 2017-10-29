@@ -27,7 +27,7 @@ class Category extends Component {
 				<ul>
 					{this.props.posts.map(post => (
 						<li key={post.id} className="text-center">
-							<Link to={`${category}/${post.id}`}><h3>{post.title}</h3></Link>
+							<Link to={`/category/${category}/${post.id}`}><h3>{post.title}</h3></Link>
 							<p><b>Author</b>: {post.author}</p>
 							<p><b>Date:</b> {this.convertTimestampToDate(post.timestamp)}</p>
 						</li>

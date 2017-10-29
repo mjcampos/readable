@@ -38,3 +38,9 @@ export var importPostDetails = (post_id) => dispatch => {
 		dispatch(getPost(arr));
 	});
 }
+
+export var addNewPost = (post) => dispatch => {
+	ReadableAPI.addPost(post).then(post => {
+		console.log("post", post);
+	});
+}

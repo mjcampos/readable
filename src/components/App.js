@@ -4,6 +4,7 @@ import {Route} from 'react-router-dom';
 import Main from './Main';
 import Category from './Category';
 import Post from './Post';
+import PostCreate from './PostCreate';
 
 class App extends Component {
 	render() {
@@ -12,8 +13,9 @@ class App extends Component {
 				<Nav/>
 
 				<Route exact path="/" component={Main}/>
-				<Route exact path="/:category" component={Category}/>
-				<Route exact path="/:category/:post_id" component={Post}/>
+				<Route exact path="/category/:category" component={Category}/>
+				<Route exact path="/category/:category/:post_id" component={Post}/>
+				<Route exact path="/post/new" component={PostCreate}/>
 			</div>
 		);
 	}

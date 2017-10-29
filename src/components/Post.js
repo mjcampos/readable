@@ -53,7 +53,8 @@ class Post extends Component {
 											</ol>
 										</div>
 									:
-										<div>No</div>
+										<div className="text-center">
+										<h5>No comments yet</h5></div>
 								}
 							</div>
 						</div>

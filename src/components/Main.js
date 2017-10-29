@@ -4,12 +4,10 @@ import {connect} from 'react-redux';
 
 // Import actions to bring in all the posts and categories
 import {importPosts} from '../actions/posts';
-import {importCategories} from '../actions/categories';
 
 class Main extends Component {
 	componentWillMount() {
 		this.props.importPosts();
-		this.props.importCategories();
 	}
 
 	convertTimestampToDate(timestamp) {
@@ -27,7 +25,7 @@ class Main extends Component {
 					<ul>
 						{this.props.categories.map(category => (
 							<li key={category.path}>
-								<Link to={`/${category.path}`}><h3>{category.name}</h3></Link>
+								<Link to={`/category/${category.path}`}><h3>{category.name}</h3></Link>
 							</li>
 						))}
 					</ul>
@@ -39,7 +37,7 @@ class Main extends Component {
 					<ul>
 						{this.props.posts.map(post => (
 							<li key={post.id}>
-								<Link to={`${post.category}/${post.id}`}><h4>{post.title}</h4></Link>
+								<Link to={`/category/${post.category}/${post.id}`}><h4>{post.title}</h4></Link>
 								<p><b>Category:</b> {post.category}</p>
 								<p><b>Vote Score:</b> {post.voteScore}</p>
 								<p><b>Date:</b> {this.convertTimestampToDate(post.timestamp)}</p>
@@ -56,4 +54,4 @@ function mapStateToProps(state) {
 	return state;
 }
 
-export default connect(mapStateToProps, {importPosts, importCategories})(Main);
+export default connect(mapStateToProps, {importPosts})(Main);

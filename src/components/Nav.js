@@ -9,6 +9,10 @@ class Nav extends Component {
 					<div className="navbar-header">
 						<Link to="/" className="navbar-brand">Readable</Link>
 					</div>
+
+					<div className="navbar-right">
+						<Link to="/post/new" className="navbar-text">New Post</Link>
+					</div>
 				</div>
 			</nav>
 		);

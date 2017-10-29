@@ -6,12 +6,17 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
+import {importCategories} from './actions/categories';
 
 var store = createStore(rootReducer, applyMiddleware(thunk));
 
-// store.subscribe(() => {
-// 	console.log('Store', store.getState());
-// });
+store.subscribe(() => {
+	console.log('Store', store.getState());
+});
+
+// Import categories
+store.dispatch(importCategories());
+
 
 ReactDOM.render(
 	<Provider store={store}>
