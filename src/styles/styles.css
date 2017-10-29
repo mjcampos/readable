@@ -7,6 +7,10 @@ ul {
 	padding-bottom: 1em;
 }
 
-.comments_section {
+#CommentList {
 	border-top: solid 1px;
+}
+
+#CommentCreate {
+	margin: 2em 0em;
 }
