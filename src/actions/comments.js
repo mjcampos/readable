@@ -20,3 +20,9 @@ export var addComment = (comment) => dispatch => {
 		dispatch(importComments(comment.parentId));
 	});
 }
+
+export var commentVote = (id, option) => dispatch => {
+	ReadableAPI.commentVote(id, option).then(comment => {
+		dispatch(importComments(comment.parentId));
+	});
+}
