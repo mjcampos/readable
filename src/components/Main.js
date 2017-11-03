@@ -3,12 +3,12 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 // Import actions to bring in all the posts and categories
-import {importPosts} from '../actions/posts';
+// import {importPosts} from '../actions/posts';
 
 class Main extends Component {
-	componentWillMount() {
-		this.props.importPosts();
-	}
+	// componentWillMount() {
+	// 	this.props.importPosts();
+	// }
 
 	convertTimestampToDate(timestamp) {
 		var d = new Date(timestamp);
@@ -54,4 +54,4 @@ function mapStateToProps(state) {
 	return state;
 }
 
-export default connect(mapStateToProps, {importPosts})(Main);
+export default connect(mapStateToProps, null)(Main);

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {importPostDetails, postVote} from '../actions/posts';
 import CommentCreate from './CommentCreate';
 import CommentList from './CommentList';
 import PostDetails from './PostDetail';
@@ -8,12 +7,6 @@ import PostDetails from './PostDetail';
 var _ = require('lodash');
 
 class Post extends Component {
-	componentWillMount() {
-		var {post_id} = this.props.match.params;
-
-		this.props.importPostDetails(post_id);
-	}
-
 	render() {
 		var {post} = this.props;
 		var noPostFound = () => {
@@ -40,10 +33,12 @@ class Post extends Component {
 	}
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, myProps) {
+	var {post_id} = myProps.match.params;
+
 	return {
-		post: state.posts[0]
+		post: state.posts.filter(post => post.id === post_id)
 	};
 }
 
-export default connect(mapStateToProps, {importPostDetails, postVote})(Post);
+export default connect(mapStateToProps, null)(Post);

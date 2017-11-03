@@ -7,6 +7,7 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import {importCategories} from './actions/categories';
+import {importPosts} from './actions/posts';
 import './styles/styles.css';
 
 var store = createStore(rootReducer, applyMiddleware(thunk));
@@ -17,6 +18,7 @@ store.subscribe(() => {
 
 // Import categories
 store.dispatch(importCategories());
+store.dispatch(importPosts());
 
 
 ReactDOM.render(

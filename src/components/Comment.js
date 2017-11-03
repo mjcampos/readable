@@ -45,8 +45,6 @@ class Comment extends Component {
 }
 
 function mapStateToProps(state) {
-	console.log("comment", state);
-
 	return {
 		state
 	};
