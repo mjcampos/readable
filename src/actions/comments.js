@@ -26,3 +26,9 @@ export var commentVote = (id, option) => dispatch => {
 		dispatch(importComments(comment.parentId));
 	});
 }
+
+export var deleteComment = (id) => dispatch => {
+	ReadableAPI.deleteComment(id).then(comment => {
+		dispatch(importComments(comment.parentId));
+	});
+}

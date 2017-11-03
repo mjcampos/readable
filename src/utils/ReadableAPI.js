@@ -88,3 +88,13 @@ export const commentVote = (id, option) =>
 		body: JSON.stringify({...option})
 	}).then(res => res.json())
 	.then(data => data)
+
+export const deleteComment = (id) =>
+	fetch(`${api}/comments/${id}`, {
+		method: "DELETE",
+		headers: {
+			...headers,
+			'Content-Type': 'application/json'
+		}
+	}).then(res => res.json())
+	.then(data => data)

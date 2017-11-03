@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {commentVote} from '../actions/comments';
+import {commentVote, deleteComment} from '../actions/comments';
 
 class Comment extends Component {
 	onButtonClick = (option) => {
 		var comment_id = this.props.comment.id;
 
 		this.props.commentVote(comment_id, {option});
+	}
+
+	onDelete = () => {
+		var comment_id = this.props.comment.id;
+
+		this.props.deleteComment(comment_id);
 	}
 
 	render() {
@@ -26,7 +32,11 @@ class Comment extends Component {
 					</div>
 
 					<div className="col-sm-3">
-						<button className="btn btn-danger" onClick={() => this.onButtonClick("downVote")}>Down Vote</button>
+						<button className="btn btn-warning" onClick={() => this.onButtonClick("downVote")}>Down Vote</button>
+					</div>
+
+					<div className="col-sm-3">
+						<button className="btn btn-danger" onClick={() => this.onDelete()}>Delete</button>
 					</div>
 				</div>
 			</li>
@@ -42,4 +52,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, {commentVote})(Comment);
+export default connect(mapStateToProps, {commentVote, deleteComment})(Comment);
