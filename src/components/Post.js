@@ -37,7 +37,7 @@ function mapStateToProps(state, myProps) {
 	var {post_id} = myProps.match.params;
 
 	return {
-		post: state.posts.filter(post => post.id === post_id)
+		post: state.posts.filter(post => post.id === post_id)[0]
 	};
 }
 

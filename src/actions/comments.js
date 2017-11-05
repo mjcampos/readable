@@ -1,11 +1,35 @@
 import * as ReadableAPI from '../utils/ReadableAPI';
 
 export var GET_COMMENTS = 'GET_COMMENTS';
+export var EDIT_COMMENT_VOTE = 'EDIT_COMMENT_VOTE';
+export var DELETE_COMMENT = 'DELETE_COMMENT';
+export var ADD_NEW_COMMENT = 'ADD_NEW_COMMENT';
 
 var getComments = (comments) => {
 	return {
 		type: GET_COMMENTS,
 		comments
+	}
+}
+
+var editCommentVote = (comment) => {
+	return {
+		type: EDIT_COMMENT_VOTE,
+		comment
+	}
+}
+
+var deleteComment = (comment) => {
+	return {
+		type: DELETE_COMMENT,
+		comment
+	}
+}
+
+var addNewComment = (comment) => {
+	return {
+		type: ADD_NEW_COMMENT,
+		comment
 	}
 }
 
@@ -17,18 +41,17 @@ export var importComments = (post_id) => dispatch => {
 
 export var addComment = (comment) => dispatch => {
 	ReadableAPI.addComment(comment).then(comment => {
-		dispatch(importComments(comment.parentId));
+		// dispatch(importComments(comment.parentId));
+		dispatch(addNewComment(comment));
 	});
 }
 
 export var commentVote = (id, option) => dispatch => {
 	ReadableAPI.commentVote(id, option).then(comment => {
-		dispatch(importComments(comment.parentId));
+		dispatch(editCommentVote(comment));
 	});
 }
 
-export var deleteComment = (id) => dispatch => {
-	ReadableAPI.deleteComment(id).then(comment => {
-		dispatch(importComments(comment.parentId));
-	});
+export var removeComment = (id) => dispatch => {
+	ReadableAPI.deleteComment(id).then(comment => dispatch(deleteComment(comment)));
 }

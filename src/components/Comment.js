@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {commentVote, deleteComment} from '../actions/comments';
+import {commentVote, removeComment} from '../actions/comments';
 
 class Comment extends Component {
 	onButtonClick = (option) => {
@@ -12,7 +12,7 @@ class Comment extends Component {
 	onDelete = () => {
 		var comment_id = this.props.comment.id;
 
-		this.props.deleteComment(comment_id);
+		this.props.removeComment(comment_id);
 	}
 
 	render() {
@@ -50,4 +50,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, {commentVote, deleteComment})(Comment);
+export default connect(mapStateToProps, {commentVote, removeComment})(Comment);

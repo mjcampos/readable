@@ -2,15 +2,8 @@ import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import '../styles/styles.css';
-import {importPostsByCategory} from '../actions/posts';
 
 class Category extends Component {
-	componentWillMount() {
-		var {category} = this.props.match.params;
-
-		this.props.importPostsByCategory(category);
-	}
-
 	convertTimestampToDate(timestamp) {
 		var d = new Date(timestamp);
 
@@ -38,10 +31,12 @@ class Category extends Component {
 	}
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, myProps) {
+	var {category} = myProps.match.params;
+
 	return {
-		posts: state.posts
+		posts: state.posts.filter(post => post.category === category)
 	};
 }
 
-export default connect(mapStateToProps, {importPostsByCategory})(Category);
+export default connect(mapStateToProps, null)(Category);

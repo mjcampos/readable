@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {importPostDetails, editPost} from '../actions/posts';
+import {editPost} from '../actions/posts';
 
 var _ = require('lodash');
 
@@ -9,15 +9,9 @@ class PostEdit extends Component {
 		super(props);
 
 		this.state = {
-			title: "",
-			body: ""
+			title: (typeof props.post !== 'undefined') ? props.post.title : "",
+			body: (typeof props.post !== 'undefined') ? props.post.body : ""
 		}
-	}
-
-	componentWillMount() {
-		var {post_id} = this.props.match.params;
-
-		this.props.importPostDetails(post_id);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -55,6 +49,7 @@ class PostEdit extends Component {
 
 	render() {
 		var {post} = this.props;
+
 		var noPostFound = () => {
 			return (
 				<div>
@@ -93,10 +88,12 @@ class PostEdit extends Component {
 	}
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+	var {post_id} = props.match.params;
+
 	return {
-		post: state.posts[0]
+		post: state.posts.filter(post => post.id === post_id)[0]
 	};
 }
 
-export default connect(mapStateToProps, {importPostDetails, editPost})(PostEdit);
+export default connect(mapStateToProps, {editPost})(PostEdit);

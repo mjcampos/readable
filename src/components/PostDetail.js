@@ -45,4 +45,10 @@ class PostDetail extends Component {
 	}
 }
 
-export default connect(null, {postVote})(PostDetail);
+function mapStateToProps(state) {
+	return {
+		state
+	}
+}
+
+export default connect(mapStateToProps, {postVote})(PostDetail);
