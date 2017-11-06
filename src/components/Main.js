@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {sortByDate, sortByVote} from '../actions/posts';
 
 class Main extends Component {
 	convertTimestampToDate(timestamp) {
@@ -26,6 +27,7 @@ class Main extends Component {
 
 				<div className="col-sm-6">
 					<h2 className="text-center">Posts</h2>
+					<h4 className="text-center">Sort by: <a onClick={() => this.props.sortByVote()}>Vote</a> | <a onClick={() => this.props.sortByDate()}>Date (Most Recent On Top)</a></h4>
 
 					<ul>
 						{this.props.posts.map(post => (
@@ -44,7 +46,12 @@ class Main extends Component {
 }
 
 function mapStateToProps(state) {
-	return state;
+	console.log("Alpha");
+
+	return {
+		categories: state.categories,
+		posts: state.posts
+	};
 }
 
-export default connect(mapStateToProps, null)(Main);
+export default connect(mapStateToProps, {sortByDate, sortByVote})(Main);

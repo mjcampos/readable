@@ -3,6 +3,8 @@ import * as ReadableAPI from '../utils/ReadableAPI';
 export var GET_POSTS = 'GET_POSTS';
 export var ADD_POST = 'ADD_POST';
 export var EDIT_POST_VOTE = 'EDIT_POST_VOTE';
+export var SORT_BY_VOTE = 'SORT_BY_VOTE';
+export var SORT_BY_DATE = 'SORT_BY_DATE';
 
 var getPosts = (posts) => {
 	return {
@@ -22,6 +24,20 @@ var editPostVote = (post) => {
 	return {
 		type: EDIT_POST_VOTE,
 		post
+	}
+}
+
+export var sortByDate = (posts) => {
+	return {
+		type: SORT_BY_DATE,
+		posts
+	}
+}
+
+export var sortByVote = (posts) => {
+	return {
+		type: SORT_BY_VOTE,
+		posts
 	}
 }
 
