@@ -1,7 +1,6 @@
 import * as ReadableAPI from '../utils/ReadableAPI';
 
 export var GET_POSTS = 'GET_POSTS';
-export var GET_POST = 'GET_POST';
 export var ADD_POST = 'ADD_POST';
 export var EDIT_POST_VOTE = 'EDIT_POST_VOTE';
 
