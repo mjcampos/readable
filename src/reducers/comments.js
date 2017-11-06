@@ -5,23 +5,19 @@ function commentsReducer(state = [], action) {
 
 	switch(action.type) {
 		case GET_COMMENTS:
-			return action.comments;
+			return action.comments.sort((commentA, commentB) => commentB.voteScore - commentA.voteScore);
 		case EDIT_COMMENT_VOTE:
-			newState = state.map(comment => {
+			return state.map(comment => {
 				if(comment.id === action.comment.id) comment.voteScore = action.comment.voteScore
 
 				return comment;
-			});
-
-			return newState;
+			}).sort((commentA, commentB) => commentB.voteScore - commentA.voteScore);
 		case DELETE_COMMENT:
 			newState = state.filter(comment => comment.id !== action.comment.id);
 
 			return newState;
 		case ADD_NEW_COMMENT:
-			newState = state.concat(action.comment);
-
-			return newState;
+			return state.concat(action.comment).sort((commentA, commentB) => commentB.voteScore - commentA.voteScore);
 		case EDIT_COMMENT:
 			newState = state.map(comment => {
 				if(comment.id === action.comment.id) comment = action.comment;
