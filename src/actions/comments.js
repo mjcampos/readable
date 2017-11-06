@@ -42,16 +42,11 @@ var editCommentReducer = (comment) => {
 }
 
 export var importComments = (post_id) => dispatch => {
-	ReadableAPI.getCommentsForPost(post_id).then(comments => {
-		dispatch(getComments(comments));
-	});
+	ReadableAPI.getCommentsForPost(post_id).then(comments => dispatch(getComments(comments)));
 }
 
 export var addComment = (comment) => dispatch => {
-	ReadableAPI.addComment(comment).then(comment => {
-		// dispatch(importComments(comment.parentId));
-		dispatch(addNewComment(comment));
-	});
+	ReadableAPI.addComment(comment).then(comment => dispatch(addNewComment(comment)));
 }
 
 export var commentVote = (id, option) => dispatch => {

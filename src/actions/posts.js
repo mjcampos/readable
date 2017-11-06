@@ -12,13 +12,6 @@ var getPosts = (posts) => {
 	}
 }
 
-// var getPost = (post) => {
-// 	return {
-// 		type: GET_POST,
-// 		post
-// 	}
-// }
-
 var addPost = (post) => {
 	return {
 		type: ADD_POST,
@@ -34,15 +27,11 @@ var editPostVote = (post) => {
 }
 
 export var importPosts = () => dispatch => {
-	ReadableAPI.getPosts().then(posts => {
-		dispatch(getPosts(posts));
-	});
+	ReadableAPI.getPosts().then(posts => dispatch(getPosts(posts)));
 }
 
 export var addNewPost = (post) => dispatch => {
-	ReadableAPI.addPost(post).then(post => {
-		dispatch(addPost(post));
-	})
+	ReadableAPI.addPost(post).then(post => dispatch(addPost(post)));
 }
 
 export var editPost = (post_id, params) => dispatch => {
@@ -50,13 +39,5 @@ export var editPost = (post_id, params) => dispatch => {
 }
 
 export var postVote = (id, option) => dispatch => {
-	ReadableAPI.postVote(id, option).then(post => {
-		// var arr = [];
-
-		// arr.push(post);
-
-		// dispatch(getPost(arr));
-
-		dispatch(editPostVote(post));
-	});
+	ReadableAPI.postVote(id, option).then(post => dispatch(editPostVote(post)));
 }

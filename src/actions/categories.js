@@ -10,7 +10,5 @@ var getCategories = (categoryArr) => {
 }
 
 export var importCategories = () => dispatch => {
-	ReadableAPI.getCategories().then(categories => {
-		dispatch(getCategories(categories));
-	});
+	ReadableAPI.getCategories().then(categories => dispatch(getCategories(categories)));
 }
