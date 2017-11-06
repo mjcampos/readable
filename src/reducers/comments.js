@@ -1,4 +1,4 @@
-import {GET_COMMENTS, EDIT_COMMENT_VOTE, DELETE_COMMENT, ADD_NEW_COMMENT} from '../actions/comments';
+import {GET_COMMENTS, EDIT_COMMENT_VOTE, DELETE_COMMENT, ADD_NEW_COMMENT, EDIT_COMMENT} from '../actions/comments';
 
 function commentsReducer(state = [], action) {
 	var newState;
@@ -20,6 +20,14 @@ function commentsReducer(state = [], action) {
 			return newState;
 		case ADD_NEW_COMMENT:
 			newState = state.concat(action.comment);
+
+			return newState;
+		case EDIT_COMMENT:
+			newState = state.map(comment => {
+				if(comment.id === action.comment.id) comment = action.comment;
+
+				return comment;
+			});
 
 			return newState;
 		default:

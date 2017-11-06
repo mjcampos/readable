@@ -93,3 +93,14 @@ export const deleteComment = (id) =>
 		}
 	}).then(res => res.json())
 	.then(data => data)
+
+export const editComment = (id, params) =>
+	fetch(`${api}/comments/${id}`, {
+		method: "PUT",
+		headers: {
+			...headers,
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({...params})
+	}).then(res => res.json())
+	.then(data => data)
