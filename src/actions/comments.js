@@ -65,7 +65,5 @@ export var removeComment = (id) => dispatch => {
 }
 
 export var editComment = (id, comment) => dispatch => {
-	ReadableAPI.editComment(id, comment).then(comment => {
-		dispatch(editCommentReducer(comment));
-	});
+	ReadableAPI.editComment(id, comment).then(comment => dispatch(editCommentReducer(comment)));
 }
