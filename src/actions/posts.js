@@ -27,17 +27,15 @@ var editPostVote = (post) => {
 	}
 }
 
-export var sortByDate = (posts) => {
+export var sortByDate = () => {
 	return {
-		type: SORT_BY_DATE,
-		posts
+		type: SORT_BY_DATE
 	}
 }
 
-export var sortByVote = (posts) => {
+export var sortByVote = () => {
 	return {
-		type: SORT_BY_VOTE,
-		posts
+		type: SORT_BY_VOTE
 	}
 }
 

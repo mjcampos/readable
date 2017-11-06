@@ -17,9 +17,9 @@ function postsReducer(state = [], action) {
 				return post;
 			}).sort((postA, postB) => postB.voteScore - postA.voteScore);
 		case SORT_BY_DATE:
-			return newState.sort((postA, postB) => postB.timestamp - postA.timestamp);
+			return state.sort((postA, postB) => postB.timestamp - postA.timestamp).map(post => post);
 		case SORT_BY_VOTE:
-			return newState.sort((postA, postB) => postB.voteScore - postA.voteScore);
+			return newState.sort((postA, postB) => postB.voteScore - postA.voteScore).map(post => post);
 		default:
 			return state;
 	}
