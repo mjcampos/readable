@@ -1,10 +1,9 @@
 import * as ReadableAPI from '../utils/ReadableAPI';
-
-export var GET_CATEGORIES = 'GET_CATEGORIES';
+import * as types from './types';
 
 var getCategories = (categoryArr) => {
 	return {
-		type: GET_CATEGORIES,
+		type: types.GET_CATEGORIES,
 		categoryArr
 	}
 }

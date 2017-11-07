@@ -1,26 +1,26 @@
-import {GET_POSTS, ADD_POST, EDIT_POST_VOTE, SORT_BY_DATE, SORT_BY_VOTE, DELETE_POST} from '../actions/posts';
+import * as types from '../actions/types';
 
 function postsReducer(state = [], action) {
 	var newState = state;
 
 	switch(action.type) {
-		case GET_POSTS:
+		case types.GET_POSTS:
 			return action.posts.sort((postA, postB) => postB.voteScore - postA.voteScore);
-		case ADD_POST:
+		case types.ADD_POST:
 			newState.concat(action.post).sort((postA, postB) => postB.voteScore - postA.voteScore);
 
 			return newState;
-		case EDIT_POST_VOTE:
+		case types.EDIT_POST_VOTE:
 			return state.map(post => {
 				if(post.id === action.post.id) post.voteScore = action.post.voteScore;
 
 				return post;
 			}).sort((postA, postB) => postB.voteScore - postA.voteScore);
-		case SORT_BY_DATE:
+		case types.SORT_BY_DATE:
 			return state.sort((postA, postB) => postB.timestamp - postA.timestamp).map(post => post);
-		case SORT_BY_VOTE:
+		case types.SORT_BY_VOTE:
 			return newState.sort((postA, postB) => postB.voteScore - postA.voteScore).map(post => post);
-		case DELETE_POST:
+		case types.DELETE_POST:
 			return state.filter(post => post.id !== action.post.id);
 		default:
 			return state;

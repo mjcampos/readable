@@ -1,49 +1,43 @@
 import * as ReadableAPI from '../utils/ReadableAPI';
-
-export var GET_POSTS = 'GET_POSTS';
-export var ADD_POST = 'ADD_POST';
-export var EDIT_POST_VOTE = 'EDIT_POST_VOTE';
-export var SORT_BY_VOTE = 'SORT_BY_VOTE';
-export var SORT_BY_DATE = 'SORT_BY_DATE';
-export var DELETE_POST = 'DELETE_POST';
+import * as types from './types';
 
 var getPosts = (posts) => {
 	return {
-		type: GET_POSTS,
+		type: types.GET_POSTS,
 		posts
 	}
 }
 
 var addPost = (post) => {
 	return {
-		type: ADD_POST,
+		type: types.ADD_POST,
 		post
 	}
 }
 
 var editPostVote = (post) => {
 	return {
-		type: EDIT_POST_VOTE,
+		type: types.EDIT_POST_VOTE,
 		post
 	}
 }
 
 var deletePostFromReducer = (post) => {
 	return {
-		type: DELETE_POST,
+		type: types.DELETE_POST,
 		post
 	}
 }
 
 export var sortByDate = () => {
 	return {
-		type: SORT_BY_DATE
+		type: types.SORT_BY_DATE
 	}
 }
 
 export var sortByVote = () => {
 	return {
-		type: SORT_BY_VOTE
+		type: types.SORT_BY_VOTE
 	}
 }
 

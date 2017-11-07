@@ -1,42 +1,37 @@
 import * as ReadableAPI from '../utils/ReadableAPI';
-
-export var GET_COMMENTS = 'GET_COMMENTS';
-export var EDIT_COMMENT_VOTE = 'EDIT_COMMENT_VOTE';
-export var DELETE_COMMENT = 'DELETE_COMMENT';
-export var ADD_NEW_COMMENT = 'ADD_NEW_COMMENT';
-export var EDIT_COMMENT = 'EDIT_COMMENT';
+import * as types from './types';
 
 var getComments = (comments) => {
 	return {
-		type: GET_COMMENTS,
+		type: types.GET_COMMENTS,
 		comments
 	}
 }
 
 var editCommentVote = (comment) => {
 	return {
-		type: EDIT_COMMENT_VOTE,
+		type: types.EDIT_COMMENT_VOTE,
 		comment
 	}
 }
 
 var deleteComment = (comment) => {
 	return {
-		type: DELETE_COMMENT,
+		type: types.DELETE_COMMENT,
 		comment
 	}
 }
 
 var addNewComment = (comment) => {
 	return {
-		type: ADD_NEW_COMMENT,
+		type: types.ADD_NEW_COMMENT,
 		comment
 	}
 }
 
 var editCommentReducer = (comment) => {
 	return {
-		type: EDIT_COMMENT,
+		type: types.EDIT_COMMENT,
 		comment
 	}
 }
