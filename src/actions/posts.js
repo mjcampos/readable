@@ -1,5 +1,6 @@
 import * as ReadableAPI from '../utils/ReadableAPI';
 import * as types from './types';
+import {importComments} from './comments';
 
 var getPosts = (posts) => {
 	return {
@@ -42,7 +43,15 @@ export var sortByVote = () => {
 }
 
 export var importPosts = () => dispatch => {
-	ReadableAPI.getPosts().then(posts => dispatch(getPosts(posts)));
+	ReadableAPI.getPosts().then(posts => {
+		posts.map(post => {
+			dispatch(importComments(post.id));
+
+			return post;
+		});
+
+		dispatch(getPosts(posts))
+	});
 }
 
 export var addNewPost = (post) => dispatch => {

@@ -5,9 +5,9 @@ import Comment from './Comment';
 
 class CommentList extends Component {
 	componentWillMount() {
-		var {parentId} = this.props;
+		// var {parentId} = this.props;
 
-		this.props.importComments(parentId);
+		// this.props.importComments(parentId);
 	}
 
 	render() {
@@ -35,9 +35,11 @@ class CommentList extends Component {
 	}
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+	// console.log(props);
+
 	return {
-		comments: state.comments
+		comments: state.comments.filter(comment => comment.parentId === props.parentId)
 	};
 }
 

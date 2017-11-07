@@ -1,10 +1,11 @@
 import * as ReadableAPI from '../utils/ReadableAPI';
 import * as types from './types';
 
-var getComments = (comments) => {
+var getComments = (comments, post_id) => {
 	return {
 		type: types.GET_COMMENTS,
-		comments
+		comments,
+		post_id
 	}
 }
 
@@ -37,7 +38,7 @@ var editCommentReducer = (comment) => {
 }
 
 export var importComments = (post_id) => dispatch => {
-	ReadableAPI.getCommentsForPost(post_id).then(comments => dispatch(getComments(comments)));
+	ReadableAPI.getCommentsForPost(post_id).then(comments => dispatch(getComments(comments, post_id)));
 }
 
 export var addComment = (comment) => dispatch => {

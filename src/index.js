@@ -12,9 +12,9 @@ import './styles/styles.css';
 
 var store = createStore(rootReducer, applyMiddleware(thunk));
 
-store.subscribe(() => {
-	console.log('Store', store.getState());
-});
+// store.subscribe(() => {
+// 	console.log('Store', store.getState());
+// });
 
 // Import categories
 store.dispatch(importCategories());
