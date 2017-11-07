@@ -62,6 +62,16 @@ export const editPost = (id, params) =>
 	}).then(res => res.json())
 	.then(data => data)
 
+export const deletePost = (id) =>
+	fetch(`${api}/posts/${id}`, {
+		method: "DELETE",
+		headers: {
+			...headers,
+			'Content-Type': 'application/json'
+		}
+	}).then(res => res.json())
+	.then(data => data)
+
 export const addComment = (params) =>
 	fetch(`${api}/comments`, {
 		method: "POST",

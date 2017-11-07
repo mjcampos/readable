@@ -1,4 +1,4 @@
-import {GET_POSTS, ADD_POST, EDIT_POST_VOTE, SORT_BY_DATE, SORT_BY_VOTE} from '../actions/posts';
+import {GET_POSTS, ADD_POST, EDIT_POST_VOTE, SORT_BY_DATE, SORT_BY_VOTE, DELETE_POST} from '../actions/posts';
 
 function postsReducer(state = [], action) {
 	var newState = state;
@@ -20,6 +20,8 @@ function postsReducer(state = [], action) {
 			return state.sort((postA, postB) => postB.timestamp - postA.timestamp).map(post => post);
 		case SORT_BY_VOTE:
 			return newState.sort((postA, postB) => postB.voteScore - postA.voteScore).map(post => post);
+		case DELETE_POST:
+			return state.filter(post => post.id !== action.post.id);
 		default:
 			return state;
 	}

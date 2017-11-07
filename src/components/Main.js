@@ -46,8 +46,6 @@ class Main extends Component {
 }
 
 function mapStateToProps(state) {
-	console.log("Alpha");
-
 	return {
 		categories: state.categories,
 		posts: state.posts

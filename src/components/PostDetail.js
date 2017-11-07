@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {postVote} from '../actions/posts';
+import {postVote, deletePost} from '../actions/posts';
 
 class PostDetail extends Component {
 	convertTimestampToDate(timestamp) {
@@ -28,16 +28,20 @@ class PostDetail extends Component {
 				<p><b>Vote Score:</b> {post.voteScore}</p>
 
 				<div className="row">
-					<div className="col-sm-4 text-center">
+					<div className="col-sm-3 text-center">
 						<button className="btn btn-primary" onClick={() => this.onButtonClick("upVote")}>Up Vote</button>
 					</div>
 
-					<div className="col-sm-4 text-center">
-						<Link to={`/post/edit/${post.id}`} className="btn btn-success">Edit</Link>
+					<div className="col-sm-3 text-center">
+						<button className="btn btn-warning" onClick={() => this.onButtonClick("downVote")}>Down Vote</button>
 					</div>
 
-					<div className="col-sm-4 text-center">
-						<button className="btn btn-danger" onClick={() => this.onButtonClick("downVote")}>Down Vote</button>
+					<div className="col-sm-3 text-center">
+						<button className="btn btn-danger" onClick={() => this.props.deletePost(post.id)}>Delete</button>
+					</div>
+
+					<div className="col-sm-3 text-center">
+						<Link to={`/post/edit/${post.id}`} className="btn btn-success">Edit</Link>
 					</div>
 				</div>
 			</div>
@@ -51,4 +55,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, {postVote})(PostDetail);
+export default connect(mapStateToProps, {postVote, deletePost})(PostDetail);

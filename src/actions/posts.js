@@ -5,6 +5,7 @@ export var ADD_POST = 'ADD_POST';
 export var EDIT_POST_VOTE = 'EDIT_POST_VOTE';
 export var SORT_BY_VOTE = 'SORT_BY_VOTE';
 export var SORT_BY_DATE = 'SORT_BY_DATE';
+export var DELETE_POST = 'DELETE_POST';
 
 var getPosts = (posts) => {
 	return {
@@ -23,6 +24,13 @@ var addPost = (post) => {
 var editPostVote = (post) => {
 	return {
 		type: EDIT_POST_VOTE,
+		post
+	}
+}
+
+var deletePostFromReducer = (post) => {
+	return {
+		type: DELETE_POST,
 		post
 	}
 }
@@ -53,4 +61,8 @@ export var editPost = (post_id, params) => dispatch => {
 
 export var postVote = (id, option) => dispatch => {
 	ReadableAPI.postVote(id, option).then(post => dispatch(editPostVote(post)));
+}
+
+export var deletePost = (id) => dispatch => {
+	ReadableAPI.deletePost(id).then(post => dispatch(deletePostFromReducer(post)));
 }
