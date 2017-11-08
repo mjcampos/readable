@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import PostSummary from './PostSummary';
 import '../styles/styles.css';
 
 class Category extends Component {
@@ -17,13 +17,9 @@ class Category extends Component {
 			<div className="container">
 				<h2 className="text-center">Category: {category}</h2>
 
-				<ul>
+				<ul className="text-center">
 					{this.props.posts.map(post => (
-						<li key={post.id} className="text-center">
-							<Link to={`/category/${category}/${post.id}`}><h3>{post.title}</h3></Link>
-							<p><b>Author</b>: {post.author}</p>
-							<p><b>Date:</b> {this.convertTimestampToDate(post.timestamp)}</p>
-						</li>
+						<PostSummary key={post.id} post={post}/>
 					))}
 				</ul>
 			</div>

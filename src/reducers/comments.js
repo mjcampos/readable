@@ -4,8 +4,6 @@ function commentsReducer(state = [], action) {
 	switch(action.type) {
 		case types.GET_COMMENTS:
 			return state.concat(action.comments);
-			
-			// return action.comments.sort((commentA, commentB) => commentB.voteScore - commentA.voteScore);
 		case types.EDIT_COMMENT_VOTE:
 			return state.map(comment => {
 				if(comment.id === action.comment.id) comment.voteScore = action.comment.voteScore

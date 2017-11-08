@@ -19,7 +19,7 @@ class PostSummary extends Component {
 				<p><b>Category:</b> {post.category}</p>
 				<p><b>Vote Score:</b> {post.voteScore}</p>
 				<p><b>Date:</b> {this.convertTimestampToDate(post.timestamp)}</p>
-				<p><b>Number of comments:</b> {comments.length}</p>
+				<p><b>Comment Count:</b> {comments.length}</p>
 			</li>
 		);
 	}
