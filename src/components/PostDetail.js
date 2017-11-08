@@ -18,7 +18,7 @@ class PostDetail extends Component {
 	}
 
 	render() {
-		var {post} = this.props;
+		var {post, comments} = this.props;
 
 		return (
 			<div id="PostDetail">
@@ -26,6 +26,7 @@ class PostDetail extends Component {
 				<p><b>Date:</b> {this.convertTimestampToDate(post.timestamp)}</p>
 				<p>{post.body}</p>
 				<p><b>Vote Score:</b> {post.voteScore}</p>
+				<p><b>Comment Count:</b> {comments.length}</p>
 
 				<div className="row">
 					<div className="col-sm-3 text-center">
@@ -49,9 +50,9 @@ class PostDetail extends Component {
 	}
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
 	return {
-		state
+		comments: state.comments.filter(comment => comment.parentId === props.post.id)
 	}
 }
 

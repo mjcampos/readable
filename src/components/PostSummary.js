@@ -10,8 +10,7 @@ class PostSummary extends Component {
 	}
 
 	render() {
-		var {post} = this.props;
-		var {comments} = this.props;
+		var {post, comments} = this.props;
 
 		return (
 			<li>

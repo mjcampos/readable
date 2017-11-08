@@ -4,12 +4,6 @@ import {importComments} from '../actions/comments';
 import Comment from './Comment';
 
 class CommentList extends Component {
-	componentWillMount() {
-		// var {parentId} = this.props;
-
-		// this.props.importComments(parentId);
-	}
-
 	render() {
 		var {comments} = this.props;
 
@@ -36,8 +30,6 @@ class CommentList extends Component {
 }
 
 function mapStateToProps(state, props) {
-	// console.log(props);
-
 	return {
 		comments: state.comments.filter(comment => comment.parentId === props.parentId)
 	};
