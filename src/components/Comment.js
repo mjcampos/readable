@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {commentVote, removeComment, editComment} from '../actions/comments';
+import {commentVote, removeComment} from '../actions/comments';
 
 class Comment extends Component {
 	constructor(props) {
@@ -23,27 +24,6 @@ class Comment extends Component {
 		this.props.removeComment(comment_id);
 	}
 
-	onEdit = (comment) => {
-		var {body} = this.state;
-		var {id} = comment;
-
-		// Validator for the input
-		if(body.trim().length) {
-			var input = {
-				body,
-				timestamp: Date.now()
-			}
-
-			this.props.editComment(id, input);
-		}
-	}
-
-	handleInputChange = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	}
-
 	render() {
 		var {comment} = this.props;
 
@@ -56,7 +36,7 @@ class Comment extends Component {
 					</div>
 
 					<div className="form-group col-sm-10">
-						<textarea className="form-control" type="text" name="body" value={this.state.body} onChange={this.handleInputChange}></textarea>
+						<p>{this.state.body}</p>
 					</div>
 
 				</div>
@@ -75,7 +55,7 @@ class Comment extends Component {
 					</div>
 
 					<div className="col-sm-3">
-						<button className="btn btn-success" onClick={() => this.onEdit(comment)}>Edit</button>
+						<Link to={`/comment/${comment.id}`} className="btn btn-success">Edit</Link>
 					</div>
 				</div>
 			</li>
@@ -89,4 +69,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, {commentVote, removeComment, editComment})(Comment);
+export default connect(mapStateToProps, {commentVote, removeComment})(Comment);

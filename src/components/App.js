@@ -6,6 +6,7 @@ import Category from './Category';
 import Post from './Post';
 import PostCreate from './PostCreate';
 import PostEdit from './PostEdit';
+import CommentEdit from './CommentEdit';
 
 class App extends Component {
 	render() {
@@ -18,6 +19,7 @@ class App extends Component {
 				<Route exact path="/category/:category/:post_id" component={Post}/>
 				<Route exact path="/post/new" component={PostCreate}/>
 				<Route exact path="/post/edit/:post_id" component={PostEdit}/>
+				<Route exact path="/comment/:comment_id" component={CommentEdit}/>
 			</div>
 		);
 	}
